@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PAF Public School Sargodha Entrance Simulation II</title>
+<style>
+*{box-sizing:border-box}
+body{
+    margin:0;
+    background:#f5f7fa;
+    color:#07152d;
+    font-family:Arial,Helvetica,sans-serif;
+    font-size:13px;
+}
+.header{
+    height:58px;
+    background:#0d1428;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 24px;
+}
+.brand{
+    font-weight:800;
+    font-size:13px;
+    letter-spacing:.1px;
+}
+.campus{
+    font-size:9px;
+    color:#cbd3e1;
+    margin-top:4px;
+}
+.contact{
+    font-size:11px;
+    font-weight:700;
+}
+.page{
+    width:647px;
+    max-width:calc(100% - 30px);
+    margin:21px auto 60px;
+}
+.hero{
+    background:linear-gradient(110deg,#213a82,#111a32);
+    color:#fff;
+    border-radius:7px;
+    padding:22px 22px 20px;
+    min-height:175px;
+    display:grid;
+    grid-template-columns:1.35fr 1fr;
+    gap:26px;
+}
+.pill{
+    display:inline-block;
+    background:#34518f;
+    padding:5px 9px;
+    border-radius:7px;
+    font-size:8px;
+    font-weight:700;
+    margin-bottom:9px;
+}
+.hero h1{
+    margin:0;
+    font-size:17px;
+    line-height:1.35;
+}
+.hero p{
+    font-size:10px;
+    line-height:1.45;
+    margin:7px 0 10px;
+}
+.tags{
+    display:flex;
+    gap:6px;
+    flex-wrap:wrap;
+}
+.tag{
+    background:#34518f;
+    border-radius:4px;
+    padding:5px 7px;
+    font-size:8px;
+    font-weight:700;
+}
+.visit{
+    font-size:10px;
+    line-height:1.35;
+}
+.visit strong{
+    display:block;
+    font-size:11px;
+    margin-bottom:2px;
+}
+.main-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+    margin-top:22px;
+}
+.panel{
+    background:#fff;
+    border:1px solid #dce2e9;
+    border-radius:7px;
+    min-height:294px;
+    padding:17px;
+    box-shadow:0 1px 2px rgba(0,0,0,.04);
+}
+.kicker{
+    color:#254f7c;
+    font-size:8px;
+    margin-bottom:7px;
+}
+.panel h2{
+    font-size:14px;
+    margin:0 0 18px;
+}
+label{
+    display:block;
+    font-size:9px;
+    font-weight:700;
+    margin:10px 0 5px;
+}
+input,select{
+    width:100%;
+    height:27px;
+    border:1px solid #d5dce5;
+    border-radius:4px;
+    padding:0 9px;
+    background:#fff;
+    color:#333;
+    font-size:9px;
+}
+.row{
+    display:grid;
+    grid-template-columns:1fr 1.1fr;
+    gap:10px;
+}
+.start{
+    width:100%;
+    border:0;
+    height:28px;
+    background:#2d65e8;
+    color:#fff;
+    border-radius:4px;
+    font-size:9px;
+    font-weight:700;
+    margin-top:10px;
+    cursor:pointer;
+}
+.start:hover{background:#2258d5}
+.stage{
+    border-bottom:1px solid #dce2e9;
+    padding:9px 0 8px;
+}
+.stage:first-of-type{padding-top:0}
+.stage:last-child{border-bottom:0}
+.stage-line{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:7px;
+}
+.stage-name{
+    font-size:10px;
+    font-weight:700;
+}
+.stage-info{
+    color:#637085;
+    font-size:8px;
+    margin-top:4px;
+}
+.percent{
+    background:#dff8e9;
+    color:#168548;
+    border-radius:3px;
+    padding:3px 5px;
+    font-size:8px;
+    font-weight:700;
+}
+.rules{
+    margin-top:16px;
+    background:#f1f7ff;
+    border:1px solid #a9cfff;
+    border-radius:5px;
+    padding:10px;
+    display:grid;
+    grid-template-columns:1fr 1fr 1.25fr;
+    gap:16px;
+}
+.rule-title{
+    color:#174b92;
+    font-weight:700;
+    font-size:8px;
+    margin-bottom:4px;
+}
+.rule-text{
+    font-size:8px;
+    line-height:1.4;
+    color:#26364e;
+}
+.footer{
+    text-align:center;
+    color:#708096;
+    font-size:8px;
+    margin-top:33px;
+}
+
+/* Question Navigator */
+.question-layout{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) 180px;
+    gap:18px;
+    align-items:start;
+}
+.question-main{min-width:0}
+.navigator{
+    background:#f8fafc;
+    border:1px solid #dce2e9;
+    border-radius:6px;
+    padding:12px;
+    position:sticky;
+    top:12px;
+}
+.navigator-title{
+    font-size:10px;
+    font-weight:800;
+    color:#0d284b;
+    margin-bottom:4px;
+}
+.navigator-info{
+    font-size:8px;
+    color:#718096;
+    margin-bottom:9px;
+}
+.nav-grid{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:5px;
+    max-height:390px;
+    overflow-y:auto;
+    padding-right:2px;
+}
+.qnav{
+    width:100%;
+    height:27px;
+    border:1px solid #d7dee8;
+    background:#fff;
+    color:#26364e;
+    border-radius:4px;
+    font-size:8px;
+    font-weight:700;
+    cursor:pointer;
+}
+.qnav:hover{border-color:#2d65e8}
+.qnav.current{
+    background:#2d65e8;
+    border-color:#2d65e8;
+    color:#fff;
+}
+.qnav.answered{
+    background:#dff8e9;
+    border-color:#8ed8aa;
+    color:#147a40;
+}
+.qnav.current.answered{
+    background:#2d65e8;
+    border-color:#2d65e8;
+    color:#fff;
+}
+.nav-legend{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-top:9px;
+}
+.legend-item{
+    display:flex;
+    align-items:center;
+    gap:4px;
+    font-size:7px;
+    color:#667085;
+}
+.legend-dot{
+    width:9px;
+    height:9px;
+    border-radius:2px;
+    border:1px solid #d7dee8;
+    background:#fff;
+}
+.legend-dot.answered{background:#dff8e9;border-color:#8ed8aa}
+.legend-dot.current{background:#2d65e8;border-color:#2d65e8}
+
+/* Examination */
+.exam{
+    background:#fff;
+    border:1px solid #dce2e9;
+    border-radius:7px;
+    padding:20px;
+}
+.exam-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid #e0e5eb;
+    padding-bottom:12px;
+}
+.exam-head h2{margin:0;font-size:16px}
+.stage-label{font-size:9px;color:#6b7788;margin-top:4px}
+.timer{
+    background:#0d1428;
+    color:#fff;
+    border-radius:5px;
+    padding:8px 12px;
+    font-weight:700;
+}
+.progress{
+    height:7px;
+    background:#e8edf2;
+    border-radius:8px;
+    margin:15px 0 20px;
+    overflow:hidden;
+}
+.progress-bar{
+    height:100%;
+    width:0%;
+    background:#2d65e8;
+}
+.question-no{
+    color:#2d65e8;
+    font-weight:700;
+    font-size:10px;
+}
+.question{
+    font-size:17px;
+    font-weight:700;
+    line-height:1.5;
+    margin:8px 0 18px;
+}
+.options{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+}
+.option{
+    background:#fff;
+    border:1px solid #d8e0e8;
+    border-radius:5px;
+    padding:12px;
+    text-align:left;
+    cursor:pointer;
+    font-size:11px;
+}
+.option:hover,.option.selected{
+    border-color:#2d65e8;
+    background:#eef4ff;
+}
+.exam-nav{
+    display:flex;
+    justify-content:space-between;
+    margin-top:22px;
+}
+.nav-btn{
+    border:0;
+    border-radius:4px;
+    background:#2d65e8;
+    color:#fff;
+    padding:9px 16px;
+    font-size:10px;
+    font-weight:700;
+    cursor:pointer;
+}
+.nav-btn:disabled{opacity:.45;cursor:not-allowed}
+
+/* Result */
+.result{text-align:center}
+.result h2{font-size:20px}
+.score{font-size:48px;font-weight:800;color:#2d65e8;margin:20px}
+.success-text{color:#168548;font-weight:700}
+.fail-text{color:#c73535;font-weight:700}
+.result-btn{margin-top:18px}
+.hidden{display:none!important}
+
+@media(max-width:900px){
+    .question-layout{grid-template-columns:1fr}
+    .navigator{position:static}
+    .nav-grid{max-height:180px;grid-template-columns:repeat(10,1fr)}
+}
+@media(max-width:700px){
+    .header{padding:0 12px}
+    .contact{display:none}
+    .page{width:auto}
+    .hero,.main-grid{grid-template-columns:1fr}
+    .hero{gap:18px}
+    .rules{grid-template-columns:1fr}
+}
+@media(max-width:500px){
+    .options{grid-template-columns:1fr}
+    .row{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+    <div>
+        <div class="brand">AL-IMRAN PAF CADET &amp; COACHING ACADEMY</div>
+        <div class="campus">Islamabad Campus</div>
+    </div>
+    <div class="contact">ADMISSION &amp; INFORMATION: 0311 0730152</div>
+</header>
+
+<main class="page">
+
+<!-- HOME -->
+<section id="home">
+
+    <div class="hero">
+        <div>
+            <span class="pill">COMPETITIVE CADET PORTAL (ADVANCED LEVEL)</span>
+            <h1>PAF Public School Sargodha<br>Entrance Simulation II</h1>
+            <p>A rigorous 5-stage competitive entrance test (Medium to Hard level).<br>
+            Stage clearance requires an 80% passing threshold.</p>
+            <div class="tags">
+                <span class="tag">200 total marks</span>
+                <span class="tag">5 sequential stages</span>
+                <span class="tag">80% qualifying score</span>
+            </div>
+        </div>
+
+        <div class="visit">
+            <strong>Visit AL-IMRAN Academy</strong>
+            Alipur Lehtrar Road, near KBL General Hospital, In front of Caltex Petrol Pump, Islamabad.<br>
+            <b>Cell: 0311 0730152</b>
+        </div>
+    </div>
+
+    <div class="main-grid">
+
+        <div class="panel">
+            <div class="kicker">CANDIDATE REGISTRATION</div>
+            <h2>Begin your simulation</h2>
+
+            <label>Candidate Name *</label>
+            <input id="candidateName" type="text" placeholder="Enter your full name">
+
+            <div class="row">
+                <div>
+                    <label>Roll / Registration number *</label>
+                    <input id="rollNo" type="text" placeholder="e.g. AIM-2025-01">
+                </div>
+                <div>
+                    <label>Applying for</label>
+                    <select id="classLevel">
+                        <option>Class 8</option>
+                        <option>Class 7</option>
+                        <option>Class 9</option>
+                        <option>Class 10</option>
+                    </select>
+                </div>
+            </div>
+
+            <button class="start" onclick="startExam()">Start examination →</button>
+        </div>
+
+        <div class="panel">
+            <div class="kicker">ASSESSMENT ROUTE</div>
+            <h2>Qualifying stages</h2>
+
+            <div class="stage">
+                <div class="stage-line">
+                    <div class="stage-name">Stage 1: Intelligence Test (IQ)</div>
+                    <span class="percent">80%</span>
+                </div>
+                <div class="stage-info">100 questions | 35 mins</div>
+            </div>
+
+            <div class="stage">
+                <div class="stage-line">
+                    <div class="stage-name">Stage 2: Mathematics</div>
+                    <span class="percent">80%</span>
+                </div>
+                <div class="stage-info">30 questions | 25 mins</div>
+            </div>
+
+            <div class="stage">
+                <div class="stage-line">
+                    <div class="stage-name">Stage 3: General Science</div>
+                    <span class="percent">80%</span>
+                </div>
+                <div class="stage-info">30 questions | 25 mins</div>
+            </div>
+
+            <div class="stage">
+                <div class="stage-line">
+                    <div class="stage-name">Stage 4: English Language</div>
+                    <span class="percent">80%</span>
+                </div>
+                <div class="stage-info">25 questions | 25 mins</div>
+            </div>
+
+            <div class="stage">
+                <div class="stage-line">
+                    <div class="stage-name">Stage 5: Urdu (اردو)</div>
+                    <span class="percent">80%</span>
+                </div>
+                <div class="stage-info">15 questions | 15 mins</div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="rules">
+        <div>
+            <div class="rule-title">Rule 1</div>
+            <div class="rule-text">1 mark per question. No negative marking.</div>
+        </div>
+        <div>
+            <div class="rule-title">Rule 2</div>
+            <div class="rule-text">Must score 80% or higher to unlock subsequent stages.</div>
+        </div>
+        <div>
+            <div class="rule-title">Rule 3</div>
+            <div class="rule-text">Automatic submission when section time runs out.</div>
+        </div>
+    </div>
+
+    <div class="footer">
+        AL-IMRAN PAF CADET &amp; COACHING ACADEMY, ISLAMABAD • Practice Simulation Portal
+    </div>
+</section>
+
+<!-- EXAM -->
+<section id="exam" class="exam hidden">
+    <div class="exam-head">
+        <div>
+            <h2 id="examTitle">Stage 1: Intelligence Test (IQ)</h2>
+            <div id="stageLabel" class="stage-label">Stage 1 of 5</div>
+        </div>
+        <div id="timer" class="timer">35:00</div>
+    </div>
+
+    <div class="progress">
+        <div id="progressBar" class="progress-bar"></div>
+    </div>
+
+    <div class="question-layout">
+        <div class="question-main">
+            <div id="questionNo" class="question-no">Question 1</div>
+            <div id="questionText" class="question"></div>
+            <div id="options" class="options"></div>
+
+            <div class="exam-nav">
+                <button id="prevBtn" class="nav-btn" onclick="previousQuestion()">← Previous</button>
+                <button id="nextBtn" class="nav-btn" onclick="nextQuestion()">Next →</button>
+            </div>
+        </div>
+
+        <aside class="navigator">
+            <div class="navigator-title">Question Navigator</div>
+            <div id="navigatorInfo" class="navigator-info">0 answered</div>
+            <div id="navGrid" class="nav-grid"></div>
+            <div class="nav-legend">
+                <div class="legend-item"><span class="legend-dot current"></span>Current</div>
+                <div class="legend-item"><span class="legend-dot answered"></span>Answered</div>
+                <div class="legend-item"><span class="legend-dot"></span>Unanswered</div>
+            </div>
+        </aside>
+    </div>
+</section>
+
+<!-- RESULT -->
+<section id="result" class="panel result hidden">
+    <h2 id="resultTitle">Stage Result</h2>
+    <div id="score" class="score">0%</div>
+    <div id="resultMessage"></div>
+    <p id="resultDetail"></p>
+    <button id="continueBtn" class="nav-btn result-btn" onclick="continueStage()">Continue →</button>
+</section>
+
+<!-- FINAL -->
+<section id="final" class="panel result hidden">
+    <h2>Simulation Completed</h2>
+    <div id="finalScore" class="score">0%</div>
+    <div id="finalMessage"></div>
+    <div id="breakdown"></div>
+    <button class="nav-btn result-btn" onclick="location.reload()">Start Again</button>
+</section>
+
+</main>
+
+<script>
+/*
+=========================================================
+QUESTION DATA
+The interface above matches the supplied screenshot.
+You can replace the questions without changing the UI.
+=========================================================
+*/
+
+const tests = [
+{
+    name:"Intelligence Test (IQ)",
+    time:35*60,
+    questions:[
+        ["Find the next number: 2, 6, 12, 20, 30, ?",["40","42","44","46"],1],
+        ["Find the next number: 3, 8, 15, 24, 35, ?",["44","46","48","50"],2],
+        ["Find the next number: 5, 11, 19, 29, 41, ?",["53","54","55","56"],2],
+        ["Find the next number: 7, 14, 28, 56, ?",["84","96","112","120"],2],
+        ["Find the next number: 81, 27, 9, 3, ?",["0","1","2","6"],1],
+        ["Find the next number: 1, 4, 9, 16, 25, ?",["30","32","36","49"],2],
+        ["Find the next number: 2, 5, 10, 17, 26, ?",["35","36","37","38"],2],
+        ["Find the next number: 100, 90, 72, 48, ?",["24","30","28","36"],1],
+        ["Find the next number: 4, 9, 19, 39, 79, ?",["149","159","169","179"],1],
+        ["Find the next number: 1, 2, 6, 24, 120, ?",["240","360","600","720"],3],
+
+        ["Complete: AZ, BY, CX, DW, ?",["EV","FU","EW","FV"],0],
+        ["Complete: B, E, I, N, T, ?",["A","B","C","D"],0],
+        ["Complete: C, F, J, O, U, ?",["A","B","C","D"],0],
+        ["Complete: Z, W, S, N, H, ?",["A","B","C","D"],0],
+        ["Complete: AB, DE, GH, JK, ?",["LM","MN","NO","OP"],1],
+        ["Complete: AC, FH, KM, PR, ?",["UW","VX","WY","XZ"],0],
+        ["Complete: BA, DC, FE, HG, ?",["IJ","JI","KL","LK"],1],
+        ["Complete: M, O, R, V, A, ?",["E","F","G","H"],1],
+        ["Complete: D, H, M, S, Z, ?",["F","G","H","I"],2],
+        ["Complete: A, D, I, P, Y, ?",["H","I","J","K"],2],
+
+        ["Book : Reading :: Knife : ?",["Writing","Cutting","Drawing","Counting"],1],
+        ["Bird : Nest :: Bee : ?",["Cave","Hive","Den","Burrow"],1],
+        ["Fish : Water :: Bird : ?",["Tree","Air","Soil","Road"],1],
+        ["Doctor : Hospital :: Teacher : ?",["Market","School","Bank","Court"],1],
+        ["Eye : See :: Ear : ?",["Touch","Smell","Hear","Taste"],2],
+        ["Puppy : Dog :: Kitten : ?",["Cow","Cat","Goat","Horse"],1],
+        ["Finger : Hand :: Toe : ?",["Arm","Leg","Foot","Head"],2],
+        ["Pen : Write :: Knife : ?",["Read","Cut","Run","Speak"],1],
+        ["Seed : Plant :: Egg : ?",["Stone","Bird","Leaf","Fruit"],1],
+        ["Soldier : Army :: Sailor : ?",["Air Force","Navy","Police","School"],1],
+
+        ["Which is the odd one out?",["Triangle","Square","Circle","Cube"],3],
+        ["Which is the odd one out?",["Apple","Mango","Orange","Carrot"],3],
+        ["Which is the odd one out?",["January","March","May","June"],3],
+        ["Which is the odd one out?",["2","3","5","9"],3],
+        ["Which is the odd one out?",["16","25","36","63"],3],
+        ["Which is the odd one out?",["Mercury","Venus","Earth","Moon"],3],
+        ["Which is the odd one out?",["Rose","Lily","Tulip","Wheat"],3],
+        ["Which is the odd one out?",["Gold","Silver","Copper","Wood"],3],
+        ["Which is the odd one out?",["Monday","Tuesday","Friday","December"],3],
+        ["Which is the odd one out?",["Square","Rectangle","Triangle","Cube"],3],
+
+        ["If CAT is coded as DBU, DOG is coded as:",["EPH","EPG","FOH","DPH"],0],
+        ["If PEN is coded as QFO, MAP is coded as:",["NBQ","NBO","MBQ","OBQ"],0],
+        ["If SUN is coded as TVO, MOON is coded as:",["NPPO","NQPO","NOOP","MPPO"],0],
+        ["If BAD is coded as 214, CAB is coded as:",["312","321","231","132"],0],
+        ["If A=1, B=2, C=3, then CAB =",["5","6","7","8"],1],
+        ["If A=1, B=2, C=3, then FACE =",["15","16","17","18"],3],
+        ["If SOUTH is written as HTUOS, SCHOOL is written as:",["LOOHCS","LOHOCS","LHOOCS","LOOSCH"],0],
+        ["If 123 means ABC, then 231 means:",["ABC","BCA","CAB","CBA"],1],
+        ["If RED = 27 using letter values, BLUE = ?",["38","40","42","44"],1],
+        ["If DOG = 26 using letter values, CAT = ?",["22","24","26","28"],1],
+
+        ["A is taller than B. B is taller than C. Who is shortest?",["A","B","C","Cannot determine"],2],
+        ["Ali is older than Bilal. Bilal is older than Hamza. Who is youngest?",["Ali","Bilal","Hamza","Cannot determine"],2],
+        ["Sara is faster than Hina but slower than Ayesha. Who is fastest?",["Sara","Hina","Ayesha","Cannot determine"],2],
+        ["Kamran is heavier than Imran but lighter than Zain. Who is heaviest?",["Kamran","Imran","Zain","Cannot determine"],2],
+        ["A is before B, and B is before C. Which comes first?",["A","B","C","Cannot determine"],0],
+        ["Five students stand in a line. Ahmed is first and Bilal is last. Who can be between them?",["Ahmed","Bilal","Any middle student","Nobody"],2],
+        ["If P is to the left of Q and Q is to the left of R, who is in the middle?",["P","Q","R","Cannot determine"],1],
+        ["Nadia is 3 places ahead of Sana. Sana is 2 places ahead of Hina. Who is ahead of Hina?",["Only Sana","Only Nadia","Both Nadia and Sana","Hina"],2],
+        ["A class has Ali ahead of Babar, and Babar ahead of Danish. Danish is:",["Ahead of Ali","Between Ali and Babar","Behind both","Cannot determine"],2],
+        ["If Umar is ranked 7th from the top and 14th from the bottom, total students are:",["20","21","22","23"],1],
+
+        ["A man walks 5 km north then 3 km east. He is from the start:",["North-West","North-East","South-East","South-West"],1],
+        ["A person faces north, turns right, then right again. He faces:",["North","South","East","West"],1],
+        ["A person faces east and turns left. He faces:",["North","South","East","West"],0],
+        ["A person faces south and turns left. He faces:",["North","South","East","West"],2],
+        ["Ali walks west, then turns left. He is now facing:",["North","South","East","West"],1],
+        ["If you travel east and then turn right, you face:",["North","South","East","West"],1],
+        ["A man walks 4 km east and 4 km west. His final position is:",["4 km east","4 km west","Starting point","8 km east"],2],
+        ["A girl walks north, then west, then south. Relative to start she is:",["East","West","North","South"],1],
+        ["Facing west, a right turn means facing:",["North","South","East","West"],0],
+        ["Facing north, a left turn means facing:",["West","East","South","North"],0],
+
+        ["A is brother of B. B is sister of C. A is C's:",["Brother","Sister","Father","Uncle"],0],
+        ["M is mother of N. N is brother of P. M is P's:",["Sister","Mother","Aunt","Grandmother"],1],
+        ["Ali is father of Bilal. Bilal is father of Hamza. Ali is Hamza's:",["Brother","Uncle","Grandfather","Cousin"],2],
+        ["Sara is sister of Ahmed. Ahmed is brother of Zain. Sara is Zain's:",["Mother","Sister","Aunt","Cousin"],1],
+        ["A is son of B. B is daughter of C. C is A's:",["Father","Mother","Grandparent","Brother"],2],
+        ["Hina's brother is Ali. Ali's mother is Sara. Sara is Hina's:",["Sister","Mother","Aunt","Grandmother"],1],
+        ["If X is the father of Y and Y is the father of Z, X is Z's:",["Brother","Father","Grandfather","Uncle"],2],
+        ["Ayesha is daughter of Imran. Imran is son of Rashid. Rashid is Ayesha's:",["Father","Brother","Grandfather","Uncle"],2],
+        ["B is sister of C, and C is son of D. D is B's:",["Parent","Brother","Cousin","Nephew"],0],
+        ["Ali's sister is Hina. Hina's daughter is Sara. Ali is Sara's:",["Father","Uncle","Brother","Cousin"],1],
+
+        ["A clock shows 3:00. Angle between hands:",["60°","90°","120°","180°"],1],
+        ["A clock shows 6:00. Angle between hands:",["90°","120°","180°","360°"],2],
+        ["If today is Monday, what day is it after 10 days?",["Wednesday","Thursday","Friday","Saturday"],1],
+        ["If yesterday was Monday, tomorrow is:",["Monday","Tuesday","Wednesday","Thursday"],2],
+        ["Three days after Friday is:",["Sunday","Monday","Tuesday","Wednesday"],1],
+        ["How many days are in two weeks?",["12","13","14","15"],2],
+        ["A leap year has how many days?",["364","365","366","367"],2],
+        ["How many months have 31 days?",["5","6","7","8"],2],
+        ["If 1 January is Monday, 8 January is:",["Sunday","Monday","Tuesday","Wednesday"],1],
+        ["Quarter of an hour equals:",["10 minutes","15 minutes","20 minutes","25 minutes"],1],
+
+        ["All roses are flowers. Which is definitely true?",["All flowers are roses","Roses are flowers","No roses are flowers","Some roses are trees"],1],
+        ["All cats are animals. Tom is a cat. Therefore Tom is:",["A plant","An animal","A bird","A fish"],1],
+        ["Some boys are players. Which must be true?",["All boys are players","At least one boy is a player","No boy is a player","All players are boys"],1],
+        ["No birds are mammals. A sparrow is a bird. Therefore a sparrow is:",["A mammal","Not a mammal","A reptile","A fish"],1],
+        ["All squares are rectangles. This shape is a square. It is therefore:",["A circle","A rectangle","A triangle","A line"],1],
+        ["All doctors are educated. Ahmed is a doctor. Ahmed is:",["Educated","Uneducated","A pilot","A farmer"],0],
+        ["Some fruits are sweet. Mango is a fruit. Which is definitely true?",["Mango is sweet","Mango is not sweet","Mango is a fruit","All fruits are mangoes"],2],
+        ["No metals are transparent. Iron is a metal. Iron is:",["Transparent","Not transparent","A gas","Liquid"],1],
+        ["All pilots can fly aircraft. Sara is a pilot. Sara can:",["Swim","Fly aircraft","Drive trains","Teach Urdu"],1],
+        ["Every square has four sides. This figure has three sides. It is:",["Definitely a square","Not a square","A circle","A cube"],1],
+
+        ["Find the missing number: 3, 7, 15, 31, ?",["47","55","63","65"],2],
+        ["Find the missing number: 6, 13, 27, 55, ?",["101","109","111","113"],2],
+        ["Find the missing number: 50, 45, 35, 20, ?",["0","5","10","15"],0],
+        ["Find the missing number: 1, 3, 7, 15, 31, ?",["47","55","63","71"],2],
+        ["Find the missing number: 9, 18, 36, 72, ?",["108","126","144","150"],2],
+        ["Find the missing number: 64, 32, 16, 8, ?",["2","4","6","10"],1],
+        ["Find the missing number: 10, 20, 40, 80, ?",["120","140","160","180"],2],
+        ["Find the missing number: 2, 3, 5, 8, 12, ?",["15","16","17","18"],2],
+        ["Find the missing number: 11, 22, 44, 88, ?",["166","176","188","198"],1],
+        ["Find the missing number: 121, 100, 81, 64, ?",["49","51","52","56"],0]
+    ]
+},
+{
+    name:"Mathematics",
+    time:25*60,
+    questions:[
+        ["15% of 240 is:",["24","30","36","40"],2],
+        ["If x + 17 = 42, x =",["15","20","25","30"],2],
+        ["HCF of 36 and 48:",["6","8","12","16"],2],
+        ["LCM of 8 and 12:",["16","20","24","32"],2],
+        ["Area of a square is 144 cm². Side =",["10 cm","12 cm","14 cm","16 cm"],1],
+        ["3/4 + 5/8 =",["9/8","10/8","11/8","13/8"],2],
+        ["7² + 5² =",["64","72","74","84"],2],
+        ["√225 =",["12","13","15","17"],2],
+        ["Average of 12, 18 and 24:",["16","18","20","22"],1],
+        ["5 pens cost Rs.150. Eight pens cost:",["Rs.200","Rs.220","Rs.240","Rs.250"],2],
+        ["Third angle of a triangle with 45° and 65°:",["60°","70°","80°","90°"],1],
+        ["2³ × 2² =",["16","24","32","64"],2],
+        ["125% of 80 =",["90","100","110","120"],1],
+        ["40% of a number is 28. Number =",["60","65","70","75"],2],
+        ["Area of rectangle 15 cm × 6 cm:",["80","90","100","120"],1],
+        ["3x = 48. x =",["12","14","16","18"],2],
+        ["A Rs.2000 shirt has 10% discount. Price =",["1700","1750","1800","1900"],2],
+        ["1/3 of 81 =",["21","24","27","30"],2],
+        ["If a:b=2:5 and a=14, b =",["28","30","35","40"],2],
+        ["125% of 80 =",["90","100","110","120"],1],
+        ["240 km in 4 hours gives speed:",["50","60","70","80"],1],
+        ["18 × 7 − 16 =",["100","110","120","126"],1],
+        ["5(3+4) =",["25","30","35","40"],2],
+        ["Which is prime?",["21","27","31","39"],2],
+        ["Next: 4, 9, 16, 25, ?",["30","36","40","49"],1],
+        ["40% of a number is 28. Number =",["60","65","70","75"],2],
+        ["72 ÷ 8 × 3 =",["18","24","27","30"],2],
+        ["Perimeter of rectangle 12 cm by 8 cm:",["30 cm","36 cm","40 cm","48 cm"],2],
+        ["A dozen contains:",["10","11","12","13"],2],
+        ["9³ =",["729","810","900","999"],0]
+    ]
+},
+{
+    name:"General Science",
+    time:25*60,
+    questions:[
+        ["Which organ pumps blood?",["Lungs","Heart","Kidney","Brain"],1],
+        ["Chemical formula of water:",["CO₂","O₂","H₂O","H₂"],2],
+        ["Red Planet:",["Venus","Mars","Jupiter","Mercury"],1],
+        ["Gas absorbed by plants:",["Oxygen","Nitrogen","Carbon dioxide","Hydrogen"],2],
+        ["Force pulling objects toward Earth:",["Friction","Gravity","Magnetism","Pressure"],1],
+        ["SI unit of force:",["Joule","Watt","Newton","Pascal"],2],
+        ["Cell control centre:",["Cell wall","Nucleus","Cytoplasm","Vacuole"],1],
+        ["Vitamin produced through sunlight:",["A","B","C","D"],3],
+        ["Water boils at sea level at:",["50°C","75°C","100°C","120°C"],2],
+        ["Blood cells that fight infection:",["Red cells","White cells","Platelets","Plasma"],1],
+        ["Largest planet:",["Earth","Saturn","Jupiter","Neptune"],2],
+        ["Basic unit of life:",["Tissue","Organ","Cell","Atom"],2],
+        ["Metal liquid at room temperature:",["Iron","Mercury","Copper","Aluminium"],1],
+        ["Instrument measuring temperature:",["Barometer","Thermometer","Ammeter","Voltmeter"],1],
+        ["Sound cannot travel through:",["Air","Water","Steel","Vacuum"],3],
+        ["Most abundant gas in atmosphere:",["Oxygen","Nitrogen","Carbon dioxide","Hydrogen"],1],
+        ["Nearest star to Earth:",["Sirius","Polaris","Sun","Vega"],2],
+        ["Organ primarily filtering blood:",["Heart","Kidney","Stomach","Lung"],1],
+        ["Plants mainly prepare food in:",["Roots","Stem","Leaves","Flowers"],2],
+        ["Energy stored in food:",["Chemical","Sound","Light","Nuclear"],0],
+        ["Freezing point of pure water:",["0°C","10°C","32°C","100°C"],0],
+        ["Planet closest to Sun:",["Earth","Mercury","Mars","Venus"],1],
+        ["Liquid changing to gas is:",["Condensation","Freezing","Evaporation","Melting"],2],
+        ["Main breathing organ:",["Lungs","Liver","Kidneys","Pancreas"],0],
+        ["A seesaw is a:",["Pulley","Lever","Wheel","Screw"],1],
+        ["Energy of a moving object:",["Potential","Kinetic","Chemical","Thermal"],1],
+        ["Planet with prominent rings:",["Mercury","Earth","Saturn","Mars"],2],
+        ["Main energy source for Earth:",["Moon","Sun","Wind","Oceans"],1],
+        ["Organ that digests food using acid:",["Stomach","Heart","Lung","Brain"],0],
+        ["Good conductor of electricity:",["Rubber","Wood","Copper","Plastic"],2]
+    ]
+},
+{
+    name:"English Language",
+    time:25*60,
+    questions:[
+        ["Synonym of Rapid:",["Slow","Quick","Weak","Late"],1],
+        ["Antonym of Ancient:",["Old","Historic","Modern","Past"],2],
+        ["He ___ to school every day.",["go","goes","going","gone"],1],
+        ["Correct spelling:",["Necessary","Necesary","Neccessary","Necassary"],0],
+        ["She has ___ umbrella.",["a","an","the","no article"],1],
+        ["Plural of Child:",["Childs","Childes","Children","Childrens"],2],
+        ["Choose the noun:",["Beautiful","Quickly","Honesty","Run"],2],
+        ["If I ___ rich, I would help the poor.",["am","was","were","be"],2],
+        ["Opposite of Expand:",["Increase","Contract","Extend","Grow"],1],
+        ["He is good ___ mathematics.",["in","at","on","for"],1],
+        ["Correct sentence:",["He do his work.","He does his work.","He doing his work.","He done his work."],1],
+        ["Past tense of Go:",["Goed","Gone","Went","Going"],2],
+        ["Synonym of Brave:",["Cowardly","Courageous","Weak","Lazy"],1],
+        ["They ___ playing cricket.",["is","am","are","be"],2],
+        ["A person who writes books is:",["Painter","Author","Driver","Pilot"],1],
+        ["Antonym of Victory:",["Success","Defeat","Win","Prize"],1],
+        ["Future tense:",["He plays cricket.","He played cricket.","He will play cricket.","He is playing cricket."],2],
+        ["Comparative form of Good:",["Gooder","Best","Better","More good"],2],
+        ["Correct spelling:",["Separate","Seperate","Separete","Seprate"],0],
+        ["Ali and Ahmed ___ brothers.",["is","am","are","was"],2],
+        ["Plural of Mouse:",["Mouses","Mice","Mousees","Mices"],1],
+        ["___ honest man.",["A","An","The only","No article"],1],
+        ["Synonym of Difficult:",["Easy","Hard","Simple","Weak"],1],
+        ["She ___ finished her work.",["have","has","having","had been"],1],
+        ["Choose the adjective:",["Beauty","Beautiful","Beautify","Beautifully"],1]
+    ]
+},
+{
+    name:"Urdu (اردو)",
+    time:15*60,
+    questions:[
+        ["لفظ 'خوش' کی ضد کیا ہے؟",["مسرت","غمگین","اداس","شوق"],2],
+        ["'کتاب' کی جمع کیا ہے؟",["کتابیں","کتابات","کتابون","کتابی"],0],
+        ["'لڑکا' کی مونث کیا ہے؟",["بچہ","لڑکی","عورت","بچی"],1],
+        ["'صبح' کا مترادف کیا ہے؟",["سحر","رات","شام","دوپہر"],0],
+        ["'آسمان سے گرا کھجور میں اٹکا' کیا ہے؟",["تشبیہ","محاورہ","ضرب المثل","اسم"],2],
+        ["'پاکستان' کس قسم کا اسم ہے؟",["اسم عام","اسم خاص","اسم صفت","اسم فعل"],1],
+        ["'استاد' کی جمع کیا ہے؟",["استادیں","اساتذہ","استادات","استادی"],1],
+        ["'سچ' کی ضد کیا ہے؟",["حق","جھوٹ","بات","قول"],1],
+        ["'علی کتاب پڑھتا ہے' میں فعل کون سا ہے؟",["علی","کتاب","پڑھتا ہے","ہے"],2],
+        ["'باغ' کی جمع کیا ہے؟",["باغات","باغیں","باغوں","باغی"],0],
+        ["'شیر کی طرح بہادر' میں صنعت:",["استعارہ","تشبیہ","کنایہ","تضاد"],1],
+        ["'خوبصورت' کس قسم کا لفظ ہے؟",["اسم","فعل","صفت","ضمیر"],2],
+        ["'وہ سکول گیا' میں 'وہ' کیا ہے؟",["اسم","ضمیر","صفت","فعل"],1],
+        ["'دن رات' میں کون سی صنعت ہے؟",["تضاد","تشبیہ","استعارہ","مبالغہ"],0],
+        ["'ناک میں دم کرنا' کا مطلب:",["خاموش ہونا","بہت تنگ کرنا","تیز دوڑنا","بیمار ہونا"],1]
+    ]
+}
+];
+
+let stage=0, q=0, answers=[], timeLeft=0, interval=null;
+let results=[], candidate="";
+
+function startExam(){
+    candidate=document.getElementById("candidateName").value.trim();
+    if(!candidate){
+        alert("Please enter candidate name.");
+        return;
+    }
+    document.getElementById("home").classList.add("hidden");
+    document.getElementById("exam").classList.remove("hidden");
+    stage=0;
+    results=[];
+    loadStage();
+}
+
+function loadStage(){
+    clearInterval(interval);
+    q=0;
+    answers=new Array(tests[stage].questions.length).fill(null);
+    timeLeft=tests[stage].time;
+
+    document.getElementById("examTitle").textContent=
+        "Stage "+(stage+1)+": "+tests[stage].name;
+    document.getElementById("stageLabel").textContent=
+        "Stage "+(stage+1)+" of "+tests.length;
+
+    buildNavigator();
+    showQuestion();
+    updateTimer();
+
+    interval=setInterval(()=>{
+        timeLeft--;
+        updateTimer();
+        if(timeLeft<=0){
+            clearInterval(interval);
+            submitStage();
+        }
+    },1000);
+}
+
+function updateTimer(){
+    const m=Math.floor(timeLeft/60);
+    const s=timeLeft%60;
+    document.getElementById("timer").textContent=
+        String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");
+}
+
+function buildNavigator(){
+    const grid=document.getElementById("navGrid");
+    grid.innerHTML="";
+    tests[stage].questions.forEach((item,index)=>{
+        const btn=document.createElement("button");
+        btn.type="button";
+        btn.className="qnav";
+        btn.textContent=index+1;
+        btn.title="Go to Question "+(index+1);
+        btn.onclick=()=>{
+            q=index;
+            showQuestion();
+        };
+        grid.appendChild(btn);
+    });
+    updateNavigator();
+}
+
+function updateNavigator(){
+    const grid=document.getElementById("navGrid");
+    if(!grid) return;
+    const buttons=grid.querySelectorAll(".qnav");
+    let answeredCount=0;
+
+    buttons.forEach((btn,index)=>{
+        btn.classList.remove("current","answered");
+        if(answers[index]!==null){
+            btn.classList.add("answered");
+            answeredCount++;
+        }
+        if(index===q){
+            btn.classList.add("current");
+        }
+    });
+
+    document.getElementById("navigatorInfo").textContent =
+        answeredCount+" answered • "+(answers.length-answeredCount)+" unanswered";
+}
+
+function showQuestion(){
+    const item=tests[stage].questions[q];
+
+    document.getElementById("questionNo").textContent=
+        "Question "+(q+1)+" of "+tests[stage].questions.length;
+
+    document.getElementById("questionText").textContent=item[0];
+
+    const box=document.getElementById("options");
+    box.innerHTML="";
+
+    item[1].forEach((answer,index)=>{
+        const btn=document.createElement("button");
+        btn.className="option"+(answers[q]===index?" selected":"");
+        btn.textContent=String.fromCharCode(65+index)+". "+answer;
+        btn.onclick=()=>{
+            answers[q]=index;
+            document.querySelectorAll(".option")
+                .forEach(x=>x.classList.remove("selected"));
+            btn.classList.add("selected");
+            updateNavigator();
+        };
+        box.appendChild(btn);
+    });
+
+    document.getElementById("progressBar").style.width=
+        ((q+1)/tests[stage].questions.length*100)+"%";
+
+    document.getElementById("prevBtn").disabled=q===0;
+
+    document.getElementById("nextBtn").textContent=
+        q===tests[stage].questions.length-1?"Submit Stage":"Next →";
+
+    updateNavigator();
+}
+
+function nextQuestion(){
+    if(q<tests[stage].questions.length-1){
+        q++;
+        showQuestion();
+    }else{
+        submitStage();
+    }
+}
+
+function previousQuestion(){
+    if(q>0){
+        q--;
+        showQuestion();
+    }
+}
+
+function submitStage(){
+    clearInterval(interval);
+
+    let score=0;
+    tests[stage].questions.forEach((item,index)=>{
+        if(answers[index]===item[2]) score++;
+    });
+
+    const total=tests[stage].questions.length;
+    const percentage=Math.round(score/total*100);
+
+    results.push({
+        name:tests[stage].name,
+        score:score,
+        total:total,
+        percentage:percentage
+    });
+
+    document.getElementById("exam").classList.add("hidden");
+    document.getElementById("result").classList.remove("hidden");
+
+    document.getElementById("resultTitle").textContent=
+        tests[stage].name+" Result";
+    document.getElementById("score").textContent=percentage+"%";
+    document.getElementById("resultDetail").textContent=
+        "Score: "+score+" / "+total;
+
+    const message=document.getElementById("resultMessage");
+    const btn=document.getElementById("continueBtn");
+
+    if(percentage>=80){
+        message.textContent="Qualified — 80% threshold achieved.";
+        message.className="success-text";
+        btn.classList.remove("hidden");
+        btn.textContent=
+            stage===tests.length-1?"View Final Result":"Unlock Next Stage →";
+    }else{
+        message.textContent=
+            "Not qualified. Minimum required score is 80%.";
+        message.className="fail-text";
+        btn.classList.add("hidden");
+    }
+}
+
+function continueStage(){
+    if(stage<tests.length-1){
+        stage++;
+        document.getElementById("result").classList.add("hidden");
+        document.getElementById("exam").classList.remove("hidden");
+        loadStage();
+    }else{
+        showFinal();
+    }
+}
+
+function showFinal(){
+    document.getElementById("result").classList.add("hidden");
+    document.getElementById("final").classList.remove("hidden");
+
+    let score=0,total=0;
+    let html="<table style='width:100%;border-collapse:collapse;margin-top:18px'>"+
+        "<tr style='background:#0d1428;color:#fff'>"+
+        "<th style='padding:9px'>Stage</th><th>Score</th><th>Percent</th></tr>";
+
+    results.forEach(r=>{
+        score+=r.score;
+        total+=r.total;
+        html+=`<tr>
+            <td style="padding:9px;border-bottom:1px solid #ddd">${r.name}</td>
+            <td style="border-bottom:1px solid #ddd">${r.score}/${r.total}</td>
+            <td style="border-bottom:1px solid #ddd">${r.percentage}%</td>
+        </tr>`;
+    });
+
+    html+="</table>";
+
+    document.getElementById("finalScore").textContent=
+        Math.round(score/total*100)+"%";
+
+    document.getElementById("finalMessage").innerHTML=
+        "<p><b>Candidate:</b> "+candidate+"</p>"+
+        "<p>Total Score: <b>"+score+" / "+total+"</b></p>"+
+        html;
+}
+</script>
+
+</body>
+</html>
